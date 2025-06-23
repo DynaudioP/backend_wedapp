@@ -15,6 +15,7 @@ Route::get('/user', function (Request $request) {
 // V1 Routes
 Route::prefix('v1')->group(function () {
     Route::get('/venue', [VenueController::class, 'index']);
+    Route::get('/venue/all', [VenueController::class, 'getAll']);
     Route::get('/organizers', [OrganizersController::class, 'index']);
     Route::get('/catering', [CateringController::class, 'index']);
 });
