@@ -48,6 +48,21 @@ class VenueController extends Controller
         ], 200);
     }
 
+    public function search($name) {
+        $venues = Venue::where('name', 'like', '%' . $name . '%')->orderBy('name')->get();
+
+        if (count($name) > 0) {
+            return response()->json([
+                'data' => $name
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Not Found',
+                'data' => $name
+            ], 404);
+        }
+    }
+
     public function getAll()
     {
         $venues = Venue::with('images')->get();
