@@ -49,16 +49,16 @@ class VenueController extends Controller
     }
 
     public function search($name) {
-        $venues = Venue::where('name', 'like', '%' . $name . '%')->orderBy('name')->get();
+        $venues = Venue::where('name', 'like', '%' . $name . '%')->with('images')->withorderBy('name')->get();
 
         if (count($name) > 0) {
             return response()->json([
-                'data' => $name
+                'data' => $venues
             ], 200);
         } else {
             return response()->json([
                 'message' => 'Not Found',
-                'data' => $name
+                'data' => $venues
             ], 404);
         }
     }
